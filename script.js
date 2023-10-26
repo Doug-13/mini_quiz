@@ -47,8 +47,7 @@ function showQuestion() {
 }
 
 function optionClickEvent(e) {
-  // console.log(e);
-  // e.target]
+
   // Verifique qual questão foi clicada recuperando o atributo data-op. Use parseInt para formatar o atributo. Atribua o valor a uma variável.s
   let questionClicada = parseInt(e.target.getAttribute('data-op'));
 
@@ -65,14 +64,50 @@ function optionClickEvent(e) {
 
 function finishQuiz() {
   // Criar variável de pontos baseado na divisão entre respostas corretas e quantidade de questões. Use a função Math.floor para arredondar.
+  let pontosFinais = Math.floor((correctAnswers / questions.length) * 100);
   // Implementar condicionais para inserir mensagem e cor do placar de acordo com a pontuação.
   // Usar condicional if e condicionais <, <=, >, >=
+  if (pontosFinais <= 60) {
+
+    document.querySelector(".scoreText1").innerHTML = "Melhor estudar mais!!"
+    document.querySelector(".scoreText1").style.color = "red"
+  }
+  if (pontosFinais <= 70) {
+
+    document.querySelector(".scoreText1").innerHTML = "Está bom, mas pode melhorar!!"
+    document.querySelector(".scoreText1").style.color = "green"
+  }
+  if (pontosFinais <= 80) {
+
+    document.querySelector(".scoreText1").innerHTML = "Oxi, muito bom!!"
+    document.querySelector(".scoreText1").style.color = "green"
+  }
+  if (pontosFinais >= 90) {
+
+    document.querySelector(".scoreText1").innerHTML = "Aí sim hein!!"
+    document.querySelector(".scoreText1").style.color = "green"
+  }
+
+
   // Inserir a pontuação em .scorePct e o texto em .scoreText2
+  document.querySelector(".scorePct").innerHTML = `Você acertou ${pontosFinais}%`
+  document.querySelector(".scoreText2").innerHTML = `Você acertou ${correctAnswers} de um total de ${questions.length}`
+
   // Ocultar a .questionArea e exibir a .scoreArea
-  // Deixar a .progress--bar em 100%
+  document.querySelector(".questionArea").style.display = "none"
+  document.querySelector(".scoreArea").style.display = "block"
+
+
+// Deixar a .progress--bar em 100%
+document.querySelector(".progress--bar").style.width = `100%`;
 }
 
 function resetEvent() {
   // Redefina os valores de correctAnswers e currentQuestion para 0
+  let currentQuestion = 0;
+  let correctAnswers = 0;
+  window.location.reload(forcedReload);
+
   // Chame a função showQuestion
+
 }
