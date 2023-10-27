@@ -64,30 +64,31 @@ function optionClickEvent(e) {
 
 function finishQuiz() {
   // Criar variável de pontos baseado na divisão entre respostas corretas e quantidade de questões. Use a função Math.floor para arredondar.
+
+
   let pontosFinais = Math.floor((correctAnswers / questions.length) * 100);
   // Implementar condicionais para inserir mensagem e cor do placar de acordo com a pontuação.
   // Usar condicional if e condicionais <, <=, >, >=
   if (pontosFinais <= 60) {
+    document.querySelector(".scoreText1").innerHTML = "Melhor estudar mais!!";
+    document.querySelector(".scoreText1").style.color = "red";
+    document.querySelector("img") .src = 'assets/Menos de 60.jpg'
 
-    document.querySelector(".scoreText1").innerHTML = "Melhor estudar mais!!"
-    document.querySelector(".scoreText1").style.color = "red"
-  }
-  if (pontosFinais <= 70) {
-
-    document.querySelector(".scoreText1").innerHTML = "Está bom, mas pode melhorar!!"
-    document.querySelector(".scoreText1").style.color = "green"
-  }
-  if (pontosFinais <= 80) {
-
-    document.querySelector(".scoreText1").innerHTML = "Oxi, muito bom!!"
-    document.querySelector(".scoreText1").style.color = "green"
-  }
-  if (pontosFinais >= 90) {
-
-    document.querySelector(".scoreText1").innerHTML = "Aí sim hein!!"
-    document.querySelector(".scoreText1").style.color = "green"
+  } else if (pontosFinais <= 70) {
+    document.querySelector(".scoreText1").innerHTML = "Está bom, mas pode melhorar!!";
+    document.querySelector(".scoreText1").style.color = "green";
+    document.querySelector("img") .src = 'assets/Menos de 70.jpg'
+  } else if (pontosFinais >= 80 && pontosFinais <= 89) {
+    document.querySelector(".scoreText1").innerHTML = "Oxi, muito bom!!";
+    document.querySelector(".scoreText1").style.color = "green";
+    document.querySelector("img") .src = 'assets/Menos de 80.jpg'
+  } else if (pontosFinais >= 90) {
+    document.querySelector(".scoreText1").innerHTML = "Aí sim hein!!";
+    document.querySelector(".scoreText1").style.color = "green";
+    document.querySelector("img") .src = 'assets/mais de 80.jpg'
   }
 
+  console.log(pontosFinais)
 
   // Inserir a pontuação em .scorePct e o texto em .scoreText2
   document.querySelector(".scorePct").innerHTML = `Você acertou ${pontosFinais}%`
@@ -98,15 +99,15 @@ function finishQuiz() {
   document.querySelector(".scoreArea").style.display = "block"
 
 
-// Deixar a .progress--bar em 100%
-document.querySelector(".progress--bar").style.width = `100%`;
+  // Deixar a .progress--bar em 100%
+  document.querySelector(".progress--bar").style.width = `100%`;
 }
 
 function resetEvent() {
   // Redefina os valores de correctAnswers e currentQuestion para 0
-  let currentQuestion = 0;
-  let correctAnswers = 0;
-  window.location.reload(forcedReload);
+  currentQuestion = 0;
+  correctAnswers = 0;
+  showQuestion();
 
   // Chame a função showQuestion
 
